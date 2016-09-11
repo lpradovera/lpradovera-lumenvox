@@ -1,0 +1,4 @@
+---
+# tasks file for lpradovera-lumenvox
+- include: lumenvox.yml
+  when: ansible_os_family == 'Redhat'

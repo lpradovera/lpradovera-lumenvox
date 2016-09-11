@@ -1,0 +1,14 @@
+---
+# defaults file for lpradovera-lumenvox
+install_lv_client: yes
+install_lv_sre: yes
+install_lv_license_server: yes
+install_lv_media_server: yes
+install_lv_tts_server: yes
+lv_extra_tts_packages:
+  - LumenVox-MexicanSpanishSREModel
+  - LumenVox-Amanda-VoiceDB
+  - LumenVox-Chris-VoiceDB
+  - LumenVox-Luis-VoiceDB
+  - LumenVox-Lorena-VoiceDB
+license_servers: "default"

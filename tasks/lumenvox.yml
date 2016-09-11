@@ -1,0 +1,38 @@
+---
+- name: Add LumenVox repository
+  yum_repository:
+    name: lumenvox
+    description: LumenVox Products x86_64
+    baseurl: http://www.LumenVox.com/packages/EL7/x86_64/
+    gpgcheck: no
+
+- name: Install the LumenVox client
+  yum: name=LumenVoxClient state=latest
+  when: install_lv_client
+
+- name: Install the LumenVox speech server
+  yum: name=LumenVoxSRE state=latest
+  when: install_lv_sre
+
+- name: Install the LumenVox license server
+  yum: name=LumenVoxLicenseServer state=latest
+  when: install_lv_license_server
+
+- name: Install the LumenVox media server
+  yum: name=LumenVoxMediaServer state=latest
+  when: install_lv_media_server
+
+- name: Install the LumenVox TTS server
+  yum: name=LumenVoxTTS state=latest
+  when: install_lv_tts_server
+
+- name: Install the LumenVox TTS extra packages
+  yum: name={{ item }} state=latest
+  with_items: "{{ lv_extra_tts_packages }}"
+  when: install_lv_tts_server
+
+- name: Start services using LV supplied script
+  command: /etc/lumenvox/lvservices_restarter.sh
+
+- name: Start LV manager
+  service: name=lvmanagerd state=started

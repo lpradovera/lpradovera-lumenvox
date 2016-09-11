@@ -31,6 +31,9 @@
   with_items: "{{ lv_extra_tts_packages }}"
   when: install_lv_tts_server
 
+- name: Set up licensing server
+  lineinfile: dest=/etc/lumenvox/client_property.conf regexp="^LICENSE_SERVERS =" line="LICENSE_SERVERS = {{ license_servers }}"
+
 - name: Start services using LV supplied script
   command: /etc/lumenvox/lvservices_restarter.sh
 
